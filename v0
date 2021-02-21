@@ -11,8 +11,8 @@
 # IFS=$'\n'; echo "${a[*]}"
 
 str_selftest(){
-    @src std/test
-    test.doctest "${BASH_SOURCE[0]}"
+    xrc doctest/v0
+    doctest "${BASH_SOURCE[0]}"
 }
 
 : <<'DOCTEST'
