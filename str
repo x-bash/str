@@ -472,6 +472,17 @@ str_replace_n(){
     echo "${org//$SUBSEP/$src}"
 }
 
+STR_REGEX_SEP="$(printf "\001")"
+str_regex(){
+    # Only dash does not support pattern="${pattern//\\/\\\\}"
+    awk -v FS="${STR_REGEX_SEP}" '{
+        if (match($1, $2))  exit 0
+        else                exit 1
+    }' <<A
+${1}${STR_REGEX_SEP}${2:?str_regex(): Provide pattern}
+A
+}
+
 
 ## Regular Expression design
 
